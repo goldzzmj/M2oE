@@ -138,7 +138,6 @@ def main():
     valid_dataset_graph, valid_label = dgl.load_graphs('/root/autodl-tmp/RepCon2/RepCon-main/graph_dataset/{}/valid.bin'.format(args.dataset))
     test_dataset_graph, test_label = dgl.load_graphs('/root/autodl-tmp/RepCon2/RepCon-main/graph_dataset/{}/test.bin'.format(args.dataset))
 
-    # 获取最大的节点数量
     max_train_nodes = max(graph.number_of_nodes() for graph in train_dataset_graph)
     max_valid_nodes = max(graph.number_of_nodes() for graph in valid_dataset_graph)
     max_test_nodes = max(graph.number_of_nodes() for graph in test_dataset_graph)
@@ -147,30 +146,16 @@ def main():
     new_valid_dataset_graph = pad_graphs(valid_dataset_graph, max_valid_nodes)
     new_test_dataset_graph = pad_graphs(test_dataset_graph, max_test_nodes)
 
-    # # 添加子图ID特征
-    # for i, subgraph in enumerate(train_dataset_graph):
-    #     subgraph.ndata['subgraph_id'] = torch.tensor([i] * subgraph.number_of_nodes())
 
     for i, graph in enumerate(new_train_dataset_graph):
-        # 假设每个子图的所有节点都有一个唯一的子图ID
         graph.ndata['subgraph_id'] = torch.full((graph.number_of_nodes(),), i, dtype=torch.long)
 
     for i, graph in enumerate(new_valid_dataset_graph):
-        # 假设每个子图的所有节点都有一个唯一的子图ID
         graph.ndata['subgraph_id'] = torch.full((graph.number_of_nodes(),), i, dtype=torch.long)
 
     for i, graph in enumerate(new_test_dataset_graph):
-        # 假设每个子图的所有节点都有一个唯一的子图ID
         graph.ndata['subgraph_id'] = torch.full((graph.number_of_nodes(),), i, dtype=torch.long)
 
-    # from torch_geometric.data import Data
-    #
-    # u, v = train_dataset_graph[0].edges()
-    # edge_index = torch.stack([u, v], dim=0)
-    # x = train_dataset_graph[0].ndata['feat']
-    #
-    # y = train_label['labels'][0]
-    # data = Data(x=x, edge_index=edge_index, y=y)
 
     # Process the labels
     if args.task_type == 'Classification':
@@ -335,13 +320,12 @@ def main():
                 y_values = list(valid_mse_dict.values())
                 print(valid_mse_dict)
 
-            # 创建折线图
-            plt.figure(figsize=(10, 5))  # 设置图像大小
-            plt.plot(x_values, y_values, marker='o', linestyle='-', color='b')  # 绘制数据点及折线
-            plt.title('Epoch vs Val-Mse')  # 设置图标题
-            plt.xlabel('Epoch')  # 设置x轴标签
-            plt.ylabel('Acc')  # 设置y轴标签
-            plt.grid(True)  # 显示网格
+            plt.figure(figsize=(10, 5)) 
+            plt.plot(x_values, y_values, marker='o', linestyle='-', color='b')
+            plt.title('Epoch vs Val-Mse')
+            plt.xlabel('Epoch')
+            plt.ylabel('Acc')
+            plt.grid(True) 
             plt.show()
 
     # ---------------- Test Phase----------------#
