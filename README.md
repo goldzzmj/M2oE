@@ -1,5 +1,5 @@
-# RepCon
-Implementation for paper Co-modeling the Sequential and Graphical Routes for Peptide Representation Learning
+# M2oE
+Implementation for paper M2oE: Multimodal Collaborative Expert Peptide Model
 
 ## Usage Overview
 
@@ -7,19 +7,12 @@ Implementation for paper Co-modeling the Sequential and Graphical Routes for Pep
 ![Static Badge](https://img.shields.io/badge/Python-3.7.4-red)
 ![Static Badge](https://img.shields.io/badge/PyTorch-1.13.1-blue)
 
+## Datasets
+Reference: RepCon(https://github.com/Zihan-Liu-00/RepCon?tab=readme-ov-file#repcon)
+
 ## Training
 To train a RepCon model on the example dataset AP, please use the following command:
 ```
-python methods/co-modeling\ contrastive/main.py --dataset AP
+python methods/co-modeling\ contrastive/main_M2oE.py --dataset AP
 ```
-Make sure the hyperparameter ```args.mode``` is set as 'train' before a trained model has been stored.
 
-The predictive results can be found in the **'results'** folder in the root directory.
-## Important hyperparameters
-```args.seq_lr``` the learning rate of the sequential encoder & predictor.
-
-```args.graph_lr``` the learning rate of the graphical encoder & predictor.
-
-```args.nce_weight``` the weight which balance the supervised loss and the contrastive loss.
-
-The other hyperparameters are relatively insensitive to downstream tasks, and the user can keep the default settings.
