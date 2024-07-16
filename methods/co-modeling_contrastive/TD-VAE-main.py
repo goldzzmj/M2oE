@@ -233,18 +233,17 @@ def main():
                         torch.save(Seq_model.state_dict(),args.model_path+'{}_Cont_Seq_TDVAE.pt'.format(args.dataset))
 
         if args.plot_pic:
-            # 将字典的键和值分别提取出来作为X轴和Y轴的数据
             x_values = list(valid_mse_dict.keys())
             y_values = list(valid_mse_dict.values())
             print(valid_mse_dict)
 
-            # 创建折线图
-            plt.figure(figsize=(10, 5))  # 设置图像大小
-            plt.plot(x_values, y_values, marker='o', linestyle='-', color='b')  # 绘制数据点及折线
-            plt.title('Epoch vs Val-Mse')  # 设置图标题
-            plt.xlabel('Epoch')  # 设置x轴标签
-            plt.ylabel('Acc')  # 设置y轴标签
-            plt.grid(True)  # 显示网格
+            
+            plt.figure(figsize=(10, 5))
+            plt.plot(x_values, y_values, marker='o', linestyle='-', color='b') 
+            plt.title('Epoch vs Val-Mse')
+            plt.xlabel('Epoch')
+            plt.ylabel('Acc')
+            plt.grid(True)
             plt.show()
 
     # #---------------- Test Phase----------------#
