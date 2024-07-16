@@ -315,7 +315,6 @@ def main():
                 y_values = list(valid_acc_dict.values())
                 print(valid_acc_dict)
             elif args.task_type == 'Regression':
-                # 将字典的键和值分别提取出来作为X轴和Y轴的数据
                 x_values = list(valid_mse_dict.keys())
                 y_values = list(valid_mse_dict.values())
                 print(valid_mse_dict)
