@@ -858,29 +858,6 @@ class GNNs_MoE(nn.Module):
             # Readout with mean pooling
             hg = dgl.mean_nodes(g, 'h')  # (512,256)
 
-            # source = g.edges()[0]
-            # dst = g.edges()[1]
-            #
-            # edge_embeddings = (g.ndata['feat'][g.edges()[0]] + g.ndata['feat'][g.edges()[1]]) / 2
-            #
-            # node_id = g.nodes()
-            # # 初始化节点的第一跳邻居集合
-            # first_hop_neighbors = g.successors(node_id)
-            #
-            # # 初始化第二跳邻居集合
-            # second_hop_neighbors = set()
-            #
-            # # 遍历第一跳邻居，收集第二跳邻居
-            # for neighbor in first_hop_neighbors:
-            #     second_hop_neighbors.update(g.successors(neighbor).tolist())
-            #
-            # # 移除第一跳邻居和原始节点自身
-            # second_hop_neighbors.difference_update(first_hop_neighbors.tolist())
-            # second_hop_neighbors.discard(node_id)
-            #
-            # print("第二跳的节点ID:", second_hop_neighbors)
-
-
         hidden = F.relu(self.e1(hg))  # (512,64)
 
         expert_outputs = [expert(hidden) for expert in self.experts]
