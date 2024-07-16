@@ -2,14 +2,6 @@ from mamba_ssm import Mamba
 import torch
 import torch.nn as nn
 
-"""
-由于捕获长期依赖性、实现线性可扩展性和保持计算效率的困难，长期时间序列预测仍然具有挑战性。
-推出了TimeMachine，这是一种创新模型，它利用 Mamba（一种状态空间模型）来捕获多元时间序列数据中的长期依赖性，同时保持线性可扩展性和较小的内存占用。 
-TimeMachine 利用时间序列数据的独特属性来产生多尺度的显着上下文线索，并利用创新的集成四曼巴架构来统一对通道混合和通道独立情况的处理，从而能够有效地选择内容进行预测不同尺度的全球和地方背景。
-在实验上，TimeMachine 在预测准确性、可扩展性和内存效率方面实现了卓越的性能，
-"""
-
-
 class RevIN(nn.Module):
     def __init__(self, num_features: int, eps=1e-5, affine=True):
         """
