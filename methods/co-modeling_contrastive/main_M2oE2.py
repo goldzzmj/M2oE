@@ -315,12 +315,10 @@ def main():
                 y_values = list(valid_acc_dict.values())
                 print(valid_acc_dict)
             elif args.task_type == 'Regression':
-                # 将字典的键和值分别提取出来作为X轴和Y轴的数据
                 x_values = list(valid_mse_dict.keys())
                 y_values = list(valid_mse_dict.values())
                 print(valid_mse_dict)
 
-            # 创建折线图
             plt.figure(figsize=(10, 5))
             plt.plot(x_values, y_values, marker='o', linestyle='-', color='b')
             plt.title('Epoch vs Val-Mse') 
