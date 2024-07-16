@@ -4,9 +4,6 @@ import torch.nn.functional as F
 from mamba_ssm import Mamba
 
 
-# nnMamba：使用状态空间模型进行 3D 生物医学图像分割、分类和地标检测
-
-
 def conv3x3(in_planes, out_planes, stride=1, groups=1, dilation=1):
     """3x3 convolution with padding."""
     return nn.Conv3d(
